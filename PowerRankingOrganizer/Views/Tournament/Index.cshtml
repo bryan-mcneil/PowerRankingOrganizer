@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PowerRankingOrganizer.Models.Tournament>
+
+@{
+    ViewBag.Title = "Tournament List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="header-text">Tournament List</h2>
+
+
+<table class="table" id="tournament">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.game_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tournament_type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.full_challonge_url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.live_image_url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.completed_at)
+            </th>
+            <th>Tournament Details</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.game_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tournament_type)
+                </td>
+                <td>
+                    <a href="@item.full_challonge_url" target="_blank">Challonge Link</a>
+                </td>
+                <td>
+                    <a href="@item.live_image_url" target="_blank">Image Link</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.completed_at)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

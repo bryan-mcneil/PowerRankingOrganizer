@@ -1,31 +1,69 @@
-﻿@{
+﻿@model IEnumerable<PowerRankingOrganizer.Models.CurrentPlayer>
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<h2 id="header-text">East Idaho Power Ranking</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="header-button">
+        @Html.ActionLink("Update Player Data", "UpdatePlayerInfo", "Home", new { }, new { @class = "btn btn-primary admin-btn" })
+        @Html.ActionLink("Reset PR", "ResetResult", "Home", new { }, new { @class = "btn btn-info admin-btn" })
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+}
+
+@if (!Model.Any())
+{
+    <p>Currently no players registered</p>
+}
+else
+{
+    var index = 0;
+    foreach (var player in Model)
+    {
+        index++;
+        var charInt = (int)player.Main;
+        var character = "../../Content/Images/character" + charInt + ".png";
+        <div class="card">
+            @if (index == 1)
+            {
+                <div class="front" id="front-one"
+                     style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
+                    @index
+                </div>
+            }
+            else
+            {
+                <div class="front"
+                     style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
+                    @index
+                </div>
+            }
+            <div class="back">
+                <ul class="info-list">
+                    <li class="info-item">Main</li>
+                    <li class="info-item item-color">@player.Main</li>
+                    <li class="info-item">Secondary</li>
+                    <li class="info-item item-color">@player.Secondary</li>
+                    <li class="info-item">Power Rank</li>
+                    <li class="info-item item-color">@player.PowerRank</li>
+                    <li class="info-item">Joined</li>
+                    <li class="info-item item-color">@($"{player.RegisteredTime:M/dd/yyyy}")</li>
+                </ul>
+            </div>
+            <div id="pname">@player.Name</div>
+        </div>
+    }
+}
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $(".card").flip();
+        });
+    </script>
+}

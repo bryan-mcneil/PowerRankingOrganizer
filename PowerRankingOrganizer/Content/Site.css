@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    cursor: wait;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,109 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+form {
+    color: aliceblue;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    margin: 35px;
+    display: inline-block;
+    cursor:pointer;
+}
+      
+.front, .back {
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    border-top: 2px black solid;
+    border-bottom: 1px black solid;
+    padding: 10px;		
+}
+.front {
+    background: linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127));
+    font-size: 50px;
+    color: fuchsia;
+}
+.back {
+    background: linear-gradient(rgb(251, 0, 127), rgb(151, 44, 249));
+}
+.info-list {
+    display: inline;
+    list-style-type: none;
+    color: #333333;
+    text-align: center;
+    font-size: 20px;
+}
+.info-item {
+    font-family: 'Audiowide', cursive;
+}
+
+.item-color {
+    color: gold;
+}
+
+.header-button {
+    text-align: center;
+}
+
+.header-text {
+    color: aliceblue;
+}
+
+.admin-btn {
+    font-family: monospace;
+}
+
+#front-one {
+    color: gold;
+}
+
+#players-table {
+    background-color: aliceblue;
+    color: dimgrey;
+}
+
+#players-table_wrapper {
+    color: aliceblue;
+    font-family: monospace;
+}
+
+#player-head {
+    background-color: cadetblue;
+}
+
+#tournament {
+    table-layout: fixed;
+    font-family: monospace;
+    color: aliceblue;
+}
+
+#tournament-detail {
+    color: aliceblue;
+    font-family: monospace;
+}
+
+#reset-btn {
+    color: cornflowerblue;
+}
+
+#pname {
+    font-family: 'Audiowide', cursive;
+    background-color: #b95eca;
+    width: 200px;
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
+    text-align: center;
+    height: 40px;
+    font-size: 25px;
+}
+#header-text {
+    font-family: 'Audiowide', cursive;
+    text-align: center;
+    color: darkorange;
 }

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PowerRankingOrganizer.Models.Player>
+
+@{
+    ViewBag.Title = "Historical Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 class="header-text">Historical Info</h2>
+
+
+@if (!Model.Any())
+{
+    <p>No Players Registered</p>
+}
+else
+{
+    <table id="players-table" class="table table-bordered table-hover">
+        <thead id="player-head">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegisteredTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Main)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Secondary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PowerRank)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SetWins)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SetLoses)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MatchWins)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MatchLoses)
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegisteredTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Main)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Secondary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PowerRank)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetWins)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetLoses)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatchWins)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatchLoses)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#players-table').DataTable();
+        });
+    </script>
+}
+
