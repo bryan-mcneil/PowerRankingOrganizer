@@ -64,6 +64,7 @@ namespace PowerRankingOrganizer.Controllers
                         Name = player.Name,
                         Main = player.Main,
                         Secondary = player.Secondary,
+                        Color = player.Color,
                         RegisteredTime = DateTime.Now,
                         PowerRank = 0,
                         SetWins = 0,
@@ -80,11 +81,13 @@ namespace PowerRankingOrganizer.Controllers
                     playerInDb.Name = player.Name;
                     playerInDb.Main = player.Main;
                     playerInDb.Secondary = player.Secondary;
+                    playerInDb.Color = player.Color;
 
                     var currentPlayerInDb = _context.CurrentPlayers.Single(c => c.Id == player.Id);
                     currentPlayerInDb.Name = player.Name;
                     currentPlayerInDb.Main = player.Main;
                     currentPlayerInDb.Secondary = player.Secondary;
+                    currentPlayerInDb.Color = player.Color;
                 }
 
                 _context.SaveChanges();

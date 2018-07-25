@@ -5,12 +5,34 @@ using System.Net.Http.Headers;
 using System.Web;
 using Newtonsoft.Json;
 using PowerRankingOrganizer.Dtos;
-using PowerRankingOrganizer.Models;
+
+/********************************************
+ * Calls the Challonge API
+ ********************************************/
 
 namespace PowerRankingOrganizer.Statics
 {
     public class ApiCaller
     {
+        public static void DeleteTournament(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://api.challonge.com/v1/");
+                client.DefaultRequestHeaders.Accept
+                    .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = client
+                    .DeleteAsync("tournaments/"
+                                 + id
+                                 + ".json?api_key=Bf12lHlDtX2syMb4TkwA4E8fS7ly4zWn1YvtfzNR").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    return;
+                }
+                    throw new HttpUnhandledException();
+            }
+        }
+
         public static List<Tournament> CallTournamentApi()
         {
             var tournaments = new List<Tournament>();

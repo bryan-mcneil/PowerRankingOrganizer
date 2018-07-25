@@ -20,6 +20,8 @@ namespace PowerRankingOrganizer.Models
 
         public Characters Secondary { get; set; }
 
+        public Colors Color { get; set; }
+
         public int PowerRank { get; set; }
 
         public int SetWins { get; set; }
@@ -31,6 +33,8 @@ namespace PowerRankingOrganizer.Models
         public int MatchLoses { get; set; }
 
         public DateTime? LastUpdated { get; set; }
+
+        public int Bonus { get; set; } = 0;
     }
 
     public enum Characters
@@ -64,7 +68,7 @@ namespace PowerRankingOrganizer.Models
         Zelda  
     }
 
-    public enum Color
+    public enum Colors
     {
         Default,
         Blue,

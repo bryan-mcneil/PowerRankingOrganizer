@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PowerRankingOrganizer.Models
+namespace PowerRankingOrganizer.Dtos
 {
     public class Tournament
     {

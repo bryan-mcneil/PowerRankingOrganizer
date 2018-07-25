@@ -2,6 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     cursor: wait;
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -78,6 +79,10 @@ form {
     font-family: monospace;
 }
 
+.change-font {
+    font-family: monospace;
+}
+
 #front-one {
     color: gold;
 }
@@ -96,11 +101,25 @@ form {
     background-color: cadetblue;
 }
 
-#tournament {
+#tournament-head {
+    background-color: cadetblue;
+}
+
+#tournament-table {
+    background-color: aliceblue;
+    color: dimgrey;
+}
+
+#tournament-table_wrapper {
+    color: aliceblue;
+    font-family: monospace;
+}
+
+/*#tournament {
     table-layout: fixed;
     font-family: monospace;
     color: aliceblue;
-}
+}*/
 
 #tournament-detail {
     color: aliceblue;
@@ -122,9 +141,34 @@ form {
     text-align: center;
     height: 40px;
     font-size: 25px;
+    color: #333333;
 }
 #header-text {
     font-family: 'Audiowide', cursive;
     text-align: center;
     color: darkorange;
+}
+
+@media (max-width:480px) {
+    .card {
+        width: 150px;
+        height: 225px;
+        margin: 15px;
+    }
+    .info-list {
+        font-size: 16px;
+    }
+    #pname {
+        width: 150px;
+    }
+}
+
+@media (max-width:375px) {
+    .card {
+        width: 140px;
+    }
+
+    #pname {
+        width: 140px;
+    }
 }

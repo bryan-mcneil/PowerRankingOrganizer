@@ -6,7 +6,7 @@ using PowerRankingOrganizer.Statics;
 
 namespace PowerRankingOrganizer.Controllers
 {
-    //API Bf12lHlDtX2syMb4TkwA4E8fS7ly4zWn1YvtfzNR
+
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,6 +26,15 @@ namespace PowerRankingOrganizer.Controllers
             var pr = _context.CurrentPlayers.OrderByDescending(p => p.PowerRank).Take(8).ToList();
 
             return View(pr);
+        }
+
+        public ActionResult ClearAllResult()
+        {
+            _context.Players.RemoveRange(_context.Players);
+            _context.CurrentPlayers.RemoveRange(_context.CurrentPlayers);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ResetResult()
@@ -86,6 +95,13 @@ namespace PowerRankingOrganizer.Controllers
                             continue;
                     }
 
+                    // Helps give edge to Second place over Third
+                    if (participant.final_rank == 2)
+                    {
+                        player.Bonus = 5;
+                        current.Bonus = 5;
+                    }
+
                     var matches = ApiCaller.CallMatchApi(tournament.id, participant.id);
 
                     foreach (var match in matches)
@@ -130,6 +146,8 @@ namespace PowerRankingOrganizer.Controllers
 
                     player.LastUpdated = tournament.completed_at;
                     current.LastUpdated = tournament.completed_at;
+                    player.LastUpdated = player.LastUpdated.Value.AddMinutes(1);
+                    current.LastUpdated = player.LastUpdated.Value.AddMinutes(1);
 
                     _context.SaveChanges();
                 }
@@ -141,6 +159,8 @@ namespace PowerRankingOrganizer.Controllers
                     player.MatchWins, player.MatchLoses));
 
                 player.PowerRank = power;
+                player.PowerRank += player.Bonus;
+                player.Bonus = 0;
             }
 
             foreach (var player in _context.CurrentPlayers)
@@ -149,6 +169,8 @@ namespace PowerRankingOrganizer.Controllers
                     player.MatchWins, player.MatchLoses));
 
                 player.PowerRank = power;
+                player.PowerRank += player.Bonus;
+                player.Bonus = 0;
             }
 
             _context.SaveChanges();

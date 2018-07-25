@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PowerRankingOrganizer.Models.Tournament>
+﻿@model IEnumerable<PowerRankingOrganizer.Dtos.Tournament>
 
 @{
     ViewBag.Title = "Tournament List";
@@ -8,8 +8,8 @@
 <h2 class="header-text">Tournament List</h2>
 
 
-<table class="table" id="tournament">
-    <thead>
+<table class="table table-bordered table-hover" id="tournament-table">
+    <thead id="tournament-head">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.name)
@@ -56,10 +56,33 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.completed_at)
                 </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.id })
-                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { item.id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { item.id })
+                    </td>
+                }
+                
             </tr>
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('#tournament-table').DataTable({
+                "order": [[5, 'desc']]
+            });
+        });
+    </script>
+}

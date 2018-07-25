@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201804252237390_AddColumnToPlayerAndCurrentTable.Designer.cs">
       <DependentUpon>201804252237390_AddColumnToPlayerAndCurrentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805160427074_UpdatedPlayer.cs" />
+    <Compile Include="Migrations\201805160427074_UpdatedPlayer.Designer.cs">
+      <DependentUpon>201805160427074_UpdatedPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807190358524_BonusMeme.cs" />
+    <Compile Include="Migrations\201807190358524_BonusMeme.Designer.cs">
+      <DependentUpon>201807190358524_BonusMeme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CurrentPlayer.cs" />
@@ -390,7 +398,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\Images\background80s.png" />
+    <Content Include="Content\Images\background80s.jpg" />
+    <Content Include="Content\Images\character00.png" />
     <Content Include="Content\Images\character10.png" />
     <Content Include="Content\Images\character100.png" />
     <Content Include="Content\Images\character101.png" />
@@ -484,6 +493,7 @@
     <Content Include="Content\Images\character51.png" />
     <Content Include="Content\Images\character52.png" />
     <Content Include="Content\Images\character53.png" />
+    <Content Include="Content\Images\character55.png" />
     <Content Include="Content\Images\character60.png" />
     <Content Include="Content\Images\character61.png" />
     <Content Include="Content\Images\character62.png" />
@@ -594,6 +604,7 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\flip.js" />
+    <None Include="Properties\PublishProfiles\EastIdahoPR.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -646,6 +657,7 @@
     <Content Include="Views\Player\Delete.cshtml" />
     <Content Include="Views\Tournament\Details.cshtml" />
     <Content Include="Views\Player\Historical.cshtml" />
+    <Content Include="Views\Tournament\Delete.cshtml" />
     <None Include="Views\Tournament\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -675,6 +687,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804252237390_AddColumnToPlayerAndCurrentTable.resx">
       <DependentUpon>201804252237390_AddColumnToPlayerAndCurrentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805160427074_UpdatedPlayer.resx">
+      <DependentUpon>201805160427074_UpdatedPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807190358524_BonusMeme.resx">
+      <DependentUpon>201807190358524_BonusMeme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

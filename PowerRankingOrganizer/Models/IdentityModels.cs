@@ -32,5 +32,7 @@ namespace PowerRankingOrganizer.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public DbSet<Dtos.Tournament> Tournaments { get; set; }
     }
 }

@@ -9,54 +9,72 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="header-button">
-        @Html.ActionLink("Update Player Data", "UpdatePlayerInfo", "Home", new { }, new { @class = "btn btn-primary admin-btn" })
-        @Html.ActionLink("Reset PR", "ResetResult", "Home", new { }, new { @class = "btn btn-info admin-btn" })
-    </div>
+<div class="header-button">
+    @Html.ActionLink("Update Player Data", "UpdatePlayerInfo", "Home", new { }, new { @class = "btn btn-primary admin-btn" })
+    @Html.ActionLink("Reset PR", "ResetResult", "Home", new { }, new { @class = "btn btn-info admin-btn" })
+    @Html.ActionLink("Clear All Data", "ClearAllResult", "Home", new { confirm = true}, new { @class = "btn btn-danger admin-btn", onclick = "return confirm('Do you really want to delete all player data? (History & Current)')" })
+</div>
 }
 
 @if (!Model.Any())
 {
-    <p>Currently no players registered</p>
+    <p style="color: white;">Currently no players registered</p>
 }
 else
 {
-    var index = 0;
-    foreach (var player in Model)
+    if (Model.All(p => p.PowerRank == 0))
     {
-        index++;
-        var charInt = (int)player.Main;
-        var character = "../../Content/Images/character" + charInt + ".png";
-        <div class="card">
-            @if (index == 1)
+        <p style="color: white;">Currently no ranked players</p>
+    }
+    else
+    {
+        var index = 0;
+        foreach (var player in Model)
+        {
+            index++;
+            var charInt = (int)player.Main;
+            var color = (int) player.Color;
+            var character = "";
+            if (File.Exists(Server.MapPath("/Content/Images/character" + charInt + color + ".png")))
             {
-                <div class="front" id="front-one"
-                     style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
-                    @index
-                </div>
+                character = "../../Content/Images/character" + charInt + color + ".png";
             }
             else
             {
-                <div class="front"
-                     style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
-                    @index
-                </div>
+                character = "../../Content/Images/character" + charInt + "0.png";
             }
-            <div class="back">
-                <ul class="info-list">
-                    <li class="info-item">Main</li>
-                    <li class="info-item item-color">@player.Main</li>
-                    <li class="info-item">Secondary</li>
-                    <li class="info-item item-color">@player.Secondary</li>
-                    <li class="info-item">Power Rank</li>
-                    <li class="info-item item-color">@player.PowerRank</li>
-                    <li class="info-item">Joined</li>
-                    <li class="info-item item-color">@($"{player.RegisteredTime:M/dd/yyyy}")</li>
-                </ul>
+            <div class="card">
+                @if (index == 1)
+                {
+                    <div class="front" id="front-one"
+                         style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
+                        @index
+                    </div>
+                }
+                else
+                {
+                    <div class="front"
+                         style="background-image: url(@character), linear-gradient(rgb(98, 0, 187), rgb(251, 0, 127)); background-repeat: no-repeat; background-position: right bottom;">
+                        @index
+                    </div>
+                }
+                <div class="back">
+                    <ul class="info-list">
+                        <li class="info-item">Main</li>
+                        <li class="info-item item-color">@player.Main</li>
+                        <li class="info-item">Secondary</li>
+                        <li class="info-item item-color">@player.Secondary</li>
+                        <li class="info-item">Power Rank</li>
+                        <li class="info-item item-color">@player.PowerRank</li>
+                        <li class="info-item">Joined</li>
+                        @*<li class="info-item item-color">@($"{player.RegisteredTime:M/dd/yyyy}")</li>*@
+                        <li class="info-item item-color">@player.RegisteredTime.ToString("MM/dd/yyyy")</li>
+                    </ul>
+                </div>
+                <div id="pname">@player.Name</div>
             </div>
-            <div id="pname">@player.Name</div>
-        </div>
-    }
+        }
+    }  
 }
 
 @section scripts

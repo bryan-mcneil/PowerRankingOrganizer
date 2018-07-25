@@ -111,8 +111,10 @@ else
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            $('#players-table').DataTable();
+        $(document).ready(function() {
+            $('#players-table').DataTable({
+                "order": [[4, 'desc']]
+            });
         });
     </script>
 }
