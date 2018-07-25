@@ -24,7 +24,7 @@ namespace PowerRankingOrganizer.Statics
                 var response = client
                     .DeleteAsync("tournaments/"
                                  + id
-                                 + ".json?api_key=####").Result;
+                                 + ".json?api_key=#").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return;
@@ -43,7 +43,7 @@ namespace PowerRankingOrganizer.Statics
                     .Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = client
-                    .GetAsync("tournaments.json?api_key=####").Result;
+                    .GetAsync("tournaments.json?api_key=#").Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -76,7 +76,7 @@ namespace PowerRankingOrganizer.Statics
                 var response = client
                     .GetAsync("tournaments/"
                               + id 
-                              + "/participants.json?api_key=####").Result;
+                              + "/participants.json?api_key=#").Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -110,7 +110,7 @@ namespace PowerRankingOrganizer.Statics
                 var response = client
                     .GetAsync("tournaments/" 
                               + tournamentId 
-                              + "/matches.json?api_key=####&participant_id="
+                              + "/matches.json?api_key=#&participant_id="
                               + participantId).Result;
 
                 if (response.IsSuccessStatusCode)
